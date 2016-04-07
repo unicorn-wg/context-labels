@@ -17,6 +17,17 @@ author:
     email: martin.thomson@gmail.com
 
 
+normative:
+  RFC5226:
+  I-D.irtf-cfrg-eddsa:
+  X9.62:
+     title: "Public Key Cryptography For The Financial Services Industry: The Elliptic Curve Digital Sig
+nature Algorithm (ECDSA)"
+     author:
+       - org: ANSI
+     date: 1998
+     seriesinfo: ANSI X9.62
+
 informative:
   RFC0760:
   RFC6709:
@@ -34,23 +45,84 @@ in signatures removes this problem.
 
 # Introduction
 
+## Notational Conventions
 
-# Using Context Strings
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
+"SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
+interpreted as described in [RFC2119].
 
-## In EdDSA
+# Signature Functions with Context
+
+The following signature schemes define an explicit context string argument:
+
+EdDSA [I-D.irtf-cfrg-eddsa]:
+
+: the `context` parameter
+
+HKDF [RFC5869]:
+
+: the `info` argument to HKDF-Expand
 
 
-## In ECDSA
+# Generic Signature with Context {#sig-context}
+
+Many pre-existing signature schemes do not define an explicit context string.
+This document defines a method for using context strings in existing signature
+functions.
+
+Given a signature function S that takes a key K and message M as a sequence of
+octets, this section defines a signature with context function Sc.  The
+signature with context function takes three arguments, K, M, and a context
+string C as a sequence of octets and is defined as:
+
+~~~ inline
+   Sc(K, M, C) = S(K, C || M)
+~~~
+
+That is, the signature is changed to accept a message that is the concatenation
+of the context and the message.
+
+This scheme MUST be used with:
+
+* RSA (both PKCS#1 and PSS)
+* ECDSA [X9.62]
+* HMAC [RFC2140]  ???
 
 
-## In RSA
+# Recommendations for Signature Context Strings
 
+In order to avoid attacks that permit use of signatures for purposes other than
+intended, the context C MUST NOT be a prefix of any other signature context
+string.
 
+New specifications defining context strings for use in signing, SHOULD select
+context strings that end with a single zero-valued octet and do not contain any
+other zero-valued octets.  Context strings SHOULD be at least 12 octets in
+length.
 
 
 # IANA Considerations
 
-This document establishes a registry for signature context strings.
+This document establishes "Signature Context String" registry.
+
+Entries in this registry contain the following fields:
+
+Context string:
+
+: A sequence of octets between 1 and 255 octets in length
+
+Specification:
+
+: A reference to a specification describing the use of the context string.
+
+Context strings in this registry MUST NOT be a prefix of any other context
+string in the registry.  FOr example, if 0x0100 is registered, then a
+registration for 0x01 or 0x010000 MUST be rejected.
+
+A context string that is at least 12 octets in length and contains exactly one
+zero-valued octet at the end can be registered on a First-Come, First-Served
+basis [RFC5226].  Context strings that do not meet these requirements require
+Expert Review [RFC5226].
 
 
 # Security Considerations

@@ -18,7 +18,11 @@ author:
 
 
 normative:
+  RFC2119:
+  RFC2104:
+  RFC3447:
   RFC5226:
+  RFC5869:
   I-D.irtf-cfrg-eddsa:
   X9.62:
      title: "Public Key Cryptography For The Financial Services Industry: The Elliptic Curve Digital Sig
@@ -29,9 +33,6 @@ nature Algorithm (ECDSA)"
      seriesinfo: ANSI X9.62
 
 informative:
-  RFC0760:
-  RFC6709:
-  RFC7230:
 
 
 --- abstract
@@ -55,13 +56,9 @@ interpreted as described in [RFC2119].
 
 The following signature schemes define an explicit context string argument:
 
-EdDSA [I-D.irtf-cfrg-eddsa]:
+* EdDSA [I-D.irtf-cfrg-eddsa] defines a `context` argument.
 
-: the `context` parameter
-
-HKDF [RFC5869]:
-
-: the `info` argument to HKDF-Expand
+* HKDF [RFC5869] specifies an `info` argument to the HKDF-Expand function.
 
 
 # Generic Signature with Context {#sig-context}
@@ -84,9 +81,9 @@ of the context and the message.
 
 This scheme MUST be used with:
 
-* RSA (both PKCS#1 and PSS)
+* RSA (both PKCS#1 and PSS) [RFC3447]
 * ECDSA [X9.62]
-* HMAC [RFC2140]  ???
+* HMAC [RFC2104]  ???
 
 
 # Recommendations for Signature Context Strings
@@ -116,7 +113,7 @@ Specification:
 : A reference to a specification describing the use of the context string.
 
 Context strings in this registry MUST NOT be a prefix of any other context
-string in the registry.  FOr example, if 0x0100 is registered, then a
+string in the registry.  For example, if 0x0100 is registered, then a
 registration for 0x01 or 0x010000 MUST be rejected.
 
 A context string that is at least 12 octets in length and contains exactly one

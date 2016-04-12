@@ -52,25 +52,35 @@ have different semantics.  This produces a potential problem whereby signatures
 with different intended uses can be confused.  The addition of context strings
 in signatures removes this problem.
 
+
 --- middle
 
 # Introduction
 
-There are a handful of cryptographic primitives that are used to build
-protocols that are used on the Internet: digital signatures, key derivation
-algorithms, message integrity codes, etc..  These protocols are generally
-developed in isolation from each other, with minimal effort to ensure that data
-structures used in one protocol do not have plausible interpretations in other
+Digital signatures are used in a range of different contexts.  These uses are
+often developed in isolation, which leads to the potential for data structures
+that are used in one protocol having plausible interpretations in other
 protocols.  This gives an opportunity for cross-protocol attacks, wherein a
-well-behaved participant in one protocol can be abused by an attacker to create
-a cryptographic object that, when interpreted by a different protocol,
-introduces a vulnerability.  Including a unique protocol-specific context label
-as input to all cryptographic operations prevents a cryptographic object
-created in one protocol from being interpreted in the context of a different
-protocol.  To avoid breaking existing protcols, only new constructs can be
-given such context labels as they are added to protocols, but cross-protocol
-attacks will be avoided between primitives/protocols that do use context
-lables.
+well-behaved participant in one protocol can be coerced into creating a
+cryptographic object that, when interpreted by a different protocol, introduces
+a vulnerability.
+
+Reuse of signing keys across different contexts is strongly discouraged.
+However, in some cases, use of the same key across contexts might be
+unavoidable.  For example, the same key might need to be used in multiple
+versions of the same protocol, or a protocol might define multiple uses for
+signatures using the same key.
+
+Including a unique protocol- and usage- specific context label as input to all
+signing operations prevents a signature created in one context from being
+successfully validated in a different context.
+
+This document describes a uniform approach for the inclusion of context labels
+and a registry for unique labels.
+
+Existing protocols might already include a unique context label.  This document
+collects some of these existing labels into the context label registry.
+
 
 ## Notational Conventions
 

@@ -4,8 +4,9 @@
 
 Network Working Group                                         M. Thomson
 Internet-Draft                                                   Mozilla
-Intended status: Standards Track                          April 12, 2016
-Expires: October 14, 2016
+Intended status: Standards Track                              D. Gillmor
+Expires: October 14, 2016                                           ACLU
+                                                          April 12, 2016
 
 
               Using Context Strings in Digital Signatures
@@ -48,15 +49,17 @@ Copyright Notice
    carefully, as they describe your rights and restrictions with respect
    to this document.  Code Components extracted from this document must
    include Simplified BSD License text as described in Section 4.e of
-   the Trust Legal Provisions and are provided without warranty as
-   described in the Simplified BSD License.
 
 
 
-Thomson                 Expires October 14, 2016                [Page 1]
+
+Thomson & Gillmor       Expires October 14, 2016                [Page 1]
 
 Internet-Draft              Signature Context                 April 2016
 
+
+   the Trust Legal Provisions and are provided without warranty as
+   described in the Simplified BSD License.
 
 Table of Contents
 
@@ -69,7 +72,7 @@ Table of Contents
    6.  Security Considerations . . . . . . . . . . . . . . . . . . .   4
    7.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .   4
    8.  Normative References  . . . . . . . . . . . . . . . . . . . .   4
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   5
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   5
 
 1.  Introduction
 
@@ -103,16 +106,16 @@ Table of Contents
 
    o  EdDSA [I-D.irtf-cfrg-eddsa] defines a "context" argument.
 
-   o  HKDF [RFC5869] specifies an "info" argument to the HKDF-Expand
-      function.
 
 
 
-
-Thomson                 Expires October 14, 2016                [Page 2]
+Thomson & Gillmor       Expires October 14, 2016                [Page 2]
 
 Internet-Draft              Signature Context                 April 2016
 
+
+   o  HKDF [RFC5869] specifies an "info" argument to the HKDF-Expand
+      function.
 
 3.  Generic Signature with Context
 
@@ -159,16 +162,16 @@ Internet-Draft              Signature Context                 April 2016
    Context string:  A sequence of octets between 1 and 255 octets in
       length
 
-   Specification:  A reference to a specification describing the use of
-      the context string.
 
 
 
-
-Thomson                 Expires October 14, 2016                [Page 3]
+Thomson & Gillmor       Expires October 14, 2016                [Page 3]
 
 Internet-Draft              Signature Context                 April 2016
 
+
+   Specification:  A reference to a specification describing the use of
+      the context string.
 
    Context strings in this registry MUST NOT be a prefix of any other
    context string in the registry.  For example, if 0x0100 is
@@ -218,10 +221,7 @@ Internet-Draft              Signature Context                 April 2016
 
 
 
-
-
-
-Thomson                 Expires October 14, 2016                [Page 4]
+Thomson & Gillmor       Expires October 14, 2016                [Page 4]
 
 Internet-Draft              Signature Context                 April 2016
 
@@ -235,7 +235,7 @@ Internet-Draft              Signature Context                 April 2016
               Industry: The Elliptic Curve Digital Sig nature Algorithm
               (ECDSA)", ANSI X9.62 , 1998.
 
-Author's Address
+Authors' Addresses
 
    Martin Thomson
    Mozilla
@@ -243,6 +243,10 @@ Author's Address
    Email: martin.thomson@gmail.com
 
 
+   Daniel Kahn Gillmor
+   ACLU
+
+   Email: dkg@fifthhorseman.net
 
 
 
@@ -273,8 +277,4 @@ Author's Address
 
 
 
-
-
-
-
-Thomson                 Expires October 14, 2016                [Page 5]
+Thomson & Gillmor       Expires October 14, 2016                [Page 5]

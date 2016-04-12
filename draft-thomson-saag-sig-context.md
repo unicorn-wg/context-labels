@@ -47,36 +47,37 @@ informative:
 
 --- abstract
 
-A single digital signature key is often relied upon to produce signatures that
-have different semantics.  This produces a potential problem whereby signatures
-with different intended uses can be confused.  The addition of context strings
-in signatures removes this problem.
+A single cryptographic key is often relied upon to produce muliple cryptographic
+artifacts that each have different semantics.  This produces a potential problem
+whereby artifacts with different intended uses can be confused.  The addition of
+context labels removes this problem.
 
 
 --- middle
 
 # Introduction
 
-Digital signatures are used in a range of different contexts.  These uses are
-often developed in isolation, which leads to the potential for data structures
-that are used in one protocol having plausible interpretations in other
-protocols.  This gives an opportunity for cross-protocol attacks, wherein a
-well-behaved participant in one protocol can be coerced into creating a
-cryptographic object that, when interpreted by a different protocol, introduces
-a vulnerability.
+The same cryptographic primitive can be used in a range of different contexts.
+These uses are often developed in isolation, which leads to the potential for
+data structures that are used in one protocol having plausible interpretations
+in other protocols.  This gives an opportunity for cross-protocol attacks,
+wherein a well-behaved participant in one protocol can be coerced into creating
+a cryptographic object that, when interpreted by a different protocol,
+introduces a vulnerability.
 
-Reuse of signing keys across different contexts is strongly discouraged.
-However, in some cases, use of the same key across contexts might be
-unavoidable.  For example, the same key might need to be used in multiple
-versions of the same protocol, or a protocol might define multiple uses for
-signatures using the same key.
+Reuse of the same key in multiple contexts is strongly discouraged.  However, in
+some cases, use of the same key might be unavoidable.  For example, the same key
+might need to be used in multiple versions of the same protocol, or a protocol
+might define multiple uses for a particular type of key.
 
-Including a unique protocol- and usage- specific context label as input to all
-signing operations prevents a signature created in one context from being
-successfully validated in a different context.
+Including a unique protocol- and usage- specific context label as input to a
+cryptographic operation prevents objects created in one context from being
+mistakenly used in a different context.
 
 This document describes a uniform approach for the inclusion of context labels
-and a registry for unique labels.
+and a registry for unique labels.  It covers the use of these labels in digital
+signatures, key derivation functions (KDFs), and message authentication codes
+(MACs).
 
 Existing protocols might already include a unique context label.  This document
 collects some of these existing labels into the context label registry.
@@ -89,7 +90,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 interpreted as described in [RFC2119].
 
 
-# Signature Functions with Context
+# Existing Functions with Context Labels
 
 The following cryptographic primitives define an explicit argument for
 identifying a context:
@@ -99,11 +100,11 @@ identifying a context:
 * HKDF [RFC5869] specifies an `info` argument to the HKDF-Expand function.
 
 
-# Generic Signature with Context {#sig-context}
+# Generic Signature or MAC Function with Context {#context}
 
-Many pre-existing signature schemes do not define an explicit context label.
-This document defines a method for using context labels in existing signature
-functions.
+Many pre-existing signature and MAC schemes do not define an explicit context
+label.  This document defines a new signature function that adds a context label
+to an existing function.
 
 Given a signature function S that takes a key K and message M as a sequence of
 octets, a signature with context function Sc is defined.  The signature with
@@ -128,25 +129,24 @@ This scheme MUST be used with:
 * Ed25519 and Ed25519ph [I-D.irtf-cfrg-eddsa]
 
 
-# Recommendations for Signature Context Labels
+# Recommendations for Context Labels
 
-In order to avoid attacks that permit use of signatures for purposes other than
-intended, the context label C MUST NOT be a prefix of any other signature context
-label.
+In order to avoid attacks that permit use of a cryptographic object for purposes
+other than intended, a context label C MUST NOT be a prefix of any other
+context label.
 
-New specifications defining context labels for use in signing, SHOULD select
-context labels that end with a single zero-valued octet and do not contain any
-other zero-valued octets.  Context labels SHOULD be at least 12 octets in
-length.
+New specifications defining context labels SHOULD select context labels that end
+with a single zero-valued octet and do not contain any other zero-valued octets.
+Context labels SHOULD be at least 12 octets in length.
 
 
 # IANA Considerations
 
-This document establishes "Signature Context String" registry.
+This document establishes a "Cryptographic Context Label" registry.
 
 Entries in this registry contain the following fields:
 
-Context label:
+Context Label:
 
 : A sequence of octets between 1 and 255 octets in length, displayed as a
   hexadecimal string
@@ -163,9 +163,9 @@ Context labels in this registry MUST NOT be a prefix of any other context label
 in the registry.  For example, if 0x01ab00 is registered, then a registration for
 0x01 or 0x01ab007c MUST be rejected.
 
-A context label that is at 12 octets or more in length and contains exactly one
+A context label that is 12 octets or more in length and contains exactly one
 zero-valued octet at the end can be registered on a First-Come, First-Served
-basis [RFC5226].  Context strings that do not meet these requirements require
+basis [RFC5226].  Context labels that do not meet these requirements require
 Expert Review [RFC5226].
 
 

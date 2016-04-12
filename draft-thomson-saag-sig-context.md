@@ -46,6 +46,22 @@ in signatures removes this problem.
 
 # Introduction
 
+There are a handful of cryptographic primitives that are used to build
+protocols that are used on the Internet: digital signatures, key derivation
+algorithms, message integrity codes, etc..  These protocols are generally
+developed in isolation from each other, with minimal effort to ensure that data
+structures used in one protocol do not have plausible interpretations in other
+protocols.  This gives an opportunity for cross-protocol attacks, wherein a
+well-behaved participant in one protocol can be abused by an attacker to create
+a cryptographic object that, when interpreted by a different protocol,
+introduces a vulnerability.  Including a unique protocol-specific context label
+as input to all cryptographic operations prevents a cryptographic object
+created in one protocol from being interpreted in the context of a different
+protocol.  To avoid breaking existing protcols, only new constructs can be
+given such context labels as they are added to protocols, but cross-protocol
+attacks will be avoided between primitives/protocols that do use context
+lables.
+
 ## Notational Conventions
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
@@ -125,3 +141,8 @@ Expert Review [RFC5226].
 # Security Considerations
 
 Derp, derp, derp.
+
+
+# Acknowledgments
+
+Benjamin Kaduk contributed to this document.

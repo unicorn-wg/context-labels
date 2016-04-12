@@ -88,9 +88,11 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
 interpreted as described in [RFC2119].
 
+
 # Signature Functions with Context
 
-The following signature schemes define an explicit context string argument:
+The following cryptographic primitives define an explicit argument for
+identifying a context:
 
 * Ed448 and Ed448ph [I-D.irtf-cfrg-eddsa] define a `context` argument.
 
@@ -99,21 +101,21 @@ The following signature schemes define an explicit context string argument:
 
 # Generic Signature with Context {#sig-context}
 
-Many pre-existing signature schemes do not define an explicit context string.
-This document defines a method for using context strings in existing signature
+Many pre-existing signature schemes do not define an explicit context label.
+This document defines a method for using context labels in existing signature
 functions.
 
 Given a signature function S that takes a key K and message M as a sequence of
-octets, this section defines a signature with context function Sc.  The
-signature with context function takes three arguments, K, M, and a context
-string C as a sequence of octets and is defined as:
+octets, a signature with context function Sc is defined.  The signature with
+context function Sc takes three arguments, K, M, and a context label C as a
+sequence of octets and is defined as:
 
 ~~~ inline
    Sc(K, M, C) = S(K, C || M)
 ~~~
 
 That is, the signature is changed to accept a message that is the concatenation
-of the context and the message.
+of the context label and the message.
 
 This scheme MUST be used with:
 
@@ -121,20 +123,20 @@ This scheme MUST be used with:
 
 * ECDSA [X9.62]
 
-* HMAC [RFC2104]  ???
+* HMAC [RFC2104]
 
 * Ed25519 and Ed25519ph [I-D.irtf-cfrg-eddsa]
 
 
-# Recommendations for Signature Context Strings
+# Recommendations for Signature Context Labels
 
 In order to avoid attacks that permit use of signatures for purposes other than
-intended, the context C MUST NOT be a prefix of any other signature context
-string.
+intended, the context label C MUST NOT be a prefix of any other signature context
+label.
 
-New specifications defining context strings for use in signing, SHOULD select
-context strings that end with a single zero-valued octet and do not contain any
-other zero-valued octets.  Context strings SHOULD be at least 12 octets in
+New specifications defining context labels for use in signing, SHOULD select
+context labels that end with a single zero-valued octet and do not contain any
+other zero-valued octets.  Context labels SHOULD be at least 12 octets in
 length.
 
 
@@ -144,19 +146,24 @@ This document establishes "Signature Context String" registry.
 
 Entries in this registry contain the following fields:
 
-Context string:
+Context label:
 
-: A sequence of octets between 1 and 255 octets in length
+: A sequence of octets between 1 and 255 octets in length, displayed as a
+  hexadecimal string
+
+String:
+
+: An optional, informative ASCII representation of the context label
 
 Specification:
 
-: A reference to a specification describing the use of the context string.
+: A reference to a specification describing the use of the context label
 
-Context strings in this registry MUST NOT be a prefix of any other context
-string in the registry.  For example, if 0x0100 is registered, then a
-registration for 0x01 or 0x010000 MUST be rejected.
+Context labels in this registry MUST NOT be a prefix of any other context label
+in the registry.  For example, if 0x01ab00 is registered, then a registration for
+0x01 or 0x01ab007c MUST be rejected.
 
-A context string that is at least 12 octets in length and contains exactly one
+A context label that is at 12 octets or more in length and contains exactly one
 zero-valued octet at the end can be registered on a First-Come, First-Served
 basis [RFC5226].  Context strings that do not meet these requirements require
 Expert Review [RFC5226].

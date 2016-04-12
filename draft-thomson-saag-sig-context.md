@@ -15,6 +15,11 @@ author:
     name: Martin Thomson
     org: Mozilla
     email: martin.thomson@gmail.com
+ -
+    ins: D. Gillmor
+    name: Daniel Kahn Gillmor
+    org: ACLU
+    email: dkg@fifthhorseman.net
 
 
 normative:

@@ -174,8 +174,8 @@ The initial contents of this registry are included in {{ok}}.
 
 # Security Considerations
 
-In general, it is best to restrict the use of any cryptographc material to a
-single use.
+In general, it is best to limit any cryptographic material to being used for a
+single purpose.
 
 
 --- back

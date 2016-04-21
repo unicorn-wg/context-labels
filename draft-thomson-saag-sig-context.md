@@ -20,6 +20,11 @@ author:
     name: Daniel Kahn Gillmor
     org: ACLU
     email: dkg@fifthhorseman.net
+ -
+    ins: B. Kaduk
+    name: Benjamin Kaduk
+    org: Unaffiliated
+    email: kaduk@mit.edu
 
 
 normative:
@@ -150,4 +155,5 @@ Derp, derp, derp.
 
 # Acknowledgments
 
-Benjamin Kaduk contributed to this document.
+This document originated from hallway discussions at IETF 95; thank
+you to those who helped spark the idea.

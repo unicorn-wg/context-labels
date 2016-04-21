@@ -1,7 +1,7 @@
 ---
 title: "Using Context Labels for Domain Separation of Cryptographic Objects"
 abbrev: "Context Labels"
-docname: draft-thomson-saag-sig-context-latest
+docname: draft-thomson-saag-context-labels-latest
 date: 2016
 category: std
 ipr: trust200902

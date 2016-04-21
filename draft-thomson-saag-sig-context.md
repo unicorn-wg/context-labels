@@ -216,7 +216,8 @@ with the guidance in {{rec}}:
 
 # Existing Protocols without Context Labels {#bad}
 
-TBD
+TLS versions 1.2 [RFC5246] and earlier do not use context labels for signatures
+though the use of the pseudorandom function (PRF) uses version-agnostic labels.
 
 
 # Acknowledgments

@@ -68,12 +68,16 @@ Table of Contents
      1.1.  Notational Conventions  . . . . . . . . . . . . . . . . .   3
    2.  Existing Functions with Context Labels  . . . . . . . . . . .   3
    3.  Generic Signature or MAC Function with Context  . . . . . . .   3
-   4.  Recommendations for Context Labels  . . . . . . . . . . . . .   3
+   4.  Recommendations for Context Labels  . . . . . . . . . . . . .   4
    5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   4
    6.  Security Considerations . . . . . . . . . . . . . . . . . . .   4
-   7.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .   4
-   8.  Normative References  . . . . . . . . . . . . . . . . . . . .   4
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   5
+   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   4
+     7.1.  Normative References  . . . . . . . . . . . . . . . . . .   5
+     7.2.  Informative References  . . . . . . . . . . . . . . . . .   5
+   Appendix A.  Existing Protocols with Context Labels . . . . . . .   5
+   Appendix B.  Existing Protocols without Context Labels  . . . . .  10
+   Appendix C.  Acknowledgments  . . . . . . . . . . . . . . . . . .  10
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  10
 
 1.  Introduction
 
@@ -101,10 +105,6 @@ Table of Contents
    of these labels in digital signatures, key derivation functions
    (KDFs), and message authentication codes (MACs).
 
-   Existing protocols might already include a unique context label.
-   This document collects some of these existing labels into the context
-   label registry.
-
 
 
 
@@ -113,6 +113,10 @@ Thomson, et al.         Expires October 23, 2016                [Page 2]
 
 Internet-Draft               Context Labels                   April 2016
 
+
+   Existing protocols might already include a unique context label.
+   This document collects some of these existing labels into the context
+   label registry.
 
 1.1.  Notational Conventions
 
@@ -157,11 +161,7 @@ Internet-Draft               Context Labels                   April 2016
 
    o  Ed25519 and Ed25519ph [I-D.irtf-cfrg-eddsa]
 
-4.  Recommendations for Context Labels
 
-   In order to avoid attacks that permit use of a cryptographic object
-   for purposes other than intended, a context label C MUST NOT be a
-   prefix of any other context label.
 
 
 
@@ -169,6 +169,12 @@ Thomson, et al.         Expires October 23, 2016                [Page 3]
 
 Internet-Draft               Context Labels                   April 2016
 
+
+4.  Recommendations for Context Labels
+
+   In order to avoid attacks that permit use of a cryptographic object
+   for purposes other than intended, a context label C MUST NOT be a
+   prefix of any other context label.
 
    New specifications defining context labels SHOULD select context
    labels that end with a single zero-valued octet and do not contain
@@ -200,21 +206,15 @@ Internet-Draft               Context Labels                   April 2016
    First-Come, First-Served basis [RFC5226].  Context labels that do not
    meet these requirements require Expert Review [RFC5226].
 
+   The initial contents of this registry are included in Appendix A.
+
 6.  Security Considerations
 
-   Derp, derp, derp.
+   In general, it is best to limit any cryptographic material to being
+   used for a single purpose.
 
-7.  Acknowledgments
+7.  References
 
-   This document originated from hallway discussions at IETF 95; thank
-   you to those who helped spark the idea.
-
-8.  Normative References
-
-   [I-D.irtf-cfrg-eddsa]
-              Josefsson, S. and I. Liusvaara, "Edwards-curve Digital
-              Signature Algorithm (EdDSA)", draft-irtf-cfrg-eddsa-05
-              (work in progress), March 2016.
 
 
 
@@ -225,6 +225,13 @@ Thomson, et al.         Expires October 23, 2016                [Page 4]
 
 Internet-Draft               Context Labels                   April 2016
 
+
+7.1.  Normative References
+
+   [I-D.irtf-cfrg-eddsa]
+              Josefsson, S. and I. Liusvaara, "Edwards-curve Digital
+              Signature Algorithm (EdDSA)", draft-irtf-cfrg-eddsa-05
+              (work in progress), March 2016.
 
    [RFC2104]  Krawczyk, H., Bellare, M., and R. Canetti, "HMAC: Keyed-
               Hashing for Message Authentication", RFC 2104,
@@ -255,6 +262,282 @@ Internet-Draft               Context Labels                   April 2016
               Industry: The Elliptic Curve Digital Sig nature Algorithm
               (ECDSA)", ANSI X9.62 , 1998.
 
+7.2.  Informative References
+
+   [I-D.ietf-tls-tls13]
+              Rescorla, E., "The Transport Layer Security (TLS) Protocol
+              Version 1.3", draft-ietf-tls-tls13-12 (work in progress),
+              March 2016.
+
+Appendix A.  Existing Protocols with Context Labels
+
+   +----------------------+---------------------+----------------------+
+   | Context label        | String              | Specification        |
+   +----------------------+---------------------+----------------------+
+
+
+
+Thomson, et al.         Expires October 23, 2016                [Page 5]
+
+Internet-Draft               Context Labels                   April 2016
+
+
+   | 20 20 20 20 20 20 20 | (64 spaces)TLS 1.3, | [I-D.ietf-tls-tls13] |
+   | 20 20 20 20 20 20 20 | server              |                      |
+   | 20 20 20 20 20 20 20 | CertificateVerify\0 |                      |
+   | 20 20 20 20 20 20 20 |                     |                      |
+   | 20 20 20 20 20 20 20 |                     |                      |
+   | 20 20 20 20 20 20 20 |                     |                      |
+   | 20 20 20 20 20 20 20 |                     |                      |
+   | 20 20 20 20 20 20 20 |                     |                      |
+   | 20 20 20 20 20 20 20 |                     |                      |
+   | 20 54 4c 53 20 31 2e |                     |                      |
+   | 33 2c 20 73 65 72 76 |                     |                      |
+   | 65 72 20 43 65 72 74 |                     |                      |
+   | 69 66 69 63 61 74 65 |                     |                      |
+   | 56 65 72 69 66 79 00 |                     |                      |
+   |                      |                     |                      |
+   | 20 20 20 20 20 20 20 | (64 spaces)TLS 1.3, | [I-D.ietf-tls-tls13] |
+   | 20 20 20 20 20 20 20 | client              |                      |
+   | 20 20 20 20 20 20 20 | CertificateVerify\0 |                      |
+   | 20 20 20 20 20 20 20 |                     |                      |
+   | 20 20 20 20 20 20 20 |                     |                      |
+   | 20 20 20 20 20 20 20 |                     |                      |
+   | 20 20 20 20 20 20 20 |                     |                      |
+   | 20 20 20 20 20 20 20 |                     |                      |
+   | 20 20 20 20 20 20 20 |                     |                      |
+   | 20 54 4c 53 20 31 2e |                     |                      |
+   | 33 2c 20 63 6c 69 65 |                     |                      |
+   | 6e 74 20 43 65 72 74 |                     |                      |
+   | 69 66 69 63 61 74 65 |                     |                      |
+   | 56 65 72 69 66 79 00 |                     |                      |
+   |                      |                     |                      |
+   | 54 4c 53 20 31 2e 33 | TLS 1.3, expanded   | [I-D.ietf-tls-tls13] |
+   | 2c 20 65 78 70 61 6e | static secret       |                      |
+   | 64 65 64 20 73 74 61 |                     |                      |
+   | 74 69 63 20 73 65 63 |                     |                      |
+   | 72 65 74             |                     |                      |
+   |                      |                     |                      |
+   | 54 4c 53 20 31 2e 33 | TLS 1.3, expanded   | [I-D.ietf-tls-tls13] |
+   | 2c 20 65 78 70 61 6e | ephemeral secret    |                      |
+   | 64 65 64 20 65 70 68 |                     |                      |
+   | 65 6d 65 72 61 6c 20 |                     |                      |
+   | 73 65 63 72 65 74    |                     |                      |
+   |                      |                     |                      |
+   | 54 4c 53 20 31 2e 33 | TLS 1.3, traffic    | [I-D.ietf-tls-tls13] |
+   | 2c 20 74 72 61 66 66 | secret              |                      |
+   | 69 63 20 73 65 63 72 |                     |                      |
+   | 65 74                |                     |                      |
+   |                      |                     |                      |
+   | 54 4c 53 20 31 2e 33 | TLS 1.3, resumption | [I-D.ietf-tls-tls13] |
+
+
+
+Thomson, et al.         Expires October 23, 2016                [Page 6]
+
+Internet-Draft               Context Labels                   April 2016
+
+
+   | 2c 20 72 65 73 75 6d | master secret       |                      |
+   | 70 74 69 6f 6e 20 6d |                     |                      |
+   | 61 73 74 65 72 20 73 |                     |                      |
+   | 65 63 72 65 74       |                     |                      |
+   |                      |                     |                      |
+   | 54 4c 53 20 31 2e 33 | TLS 1.3, exporter   | [I-D.ietf-tls-tls13] |
+   | 2c 20 65 78 70 6f 72 | master secret       |                      |
+   | 74 65 72 20 6d 61 73 |                     |                      |
+   | 74 65 72 20 73 65 63 |                     |                      |
+   | 72 65 74             |                     |                      |
+   |                      |                     |                      |
+   | 54 4c 53 20 31 2e 33 | TLS 1.3, early      | [I-D.ietf-tls-tls13] |
+   | 2c 20 65 61 72 6c 79 | handshake key       |                      |
+   | 20 68 61 6e 64 73 68 | expansion, client   |                      |
+   | 61 6b 65 20 6b 65 79 | write key           |                      |
+   | 20 65 78 70 61 6e 73 |                     |                      |
+   | 69 6f 6e 2c 20 63 6c |                     |                      |
+   | 69 65 6e 74 20 77 72 |                     |                      |
+   | 69 74 65 20 6b 65 79 |                     |                      |
+   |                      |                     |                      |
+   | 54 4c 53 20 31 2e 33 | TLS 1.3, early      | [I-D.ietf-tls-tls13] |
+   | 2c 20 65 61 72 6c 79 | handshake key       |                      |
+   | 20 68 61 6e 64 73 68 | expansion, server   |                      |
+   | 61 6b 65 20 6b 65 79 | write key           |                      |
+   | 20 65 78 70 61 6e 73 |                     |                      |
+   | 69 6f 6e 2c 20 73 65 |                     |                      |
+   | 72 76 65 72 20 77 72 |                     |                      |
+   | 69 74 65 20 6b 65 79 |                     |                      |
+   |                      |                     |                      |
+   | 54 4c 53 20 31 2e 33 | TLS 1.3, early      | [I-D.ietf-tls-tls13] |
+   | 2c 20 65 61 72 6c 79 | handshake key       |                      |
+   | 20 68 61 6e 64 73 68 | expansion, client   |                      |
+   | 61 6b 65 20 6b 65 79 | write iv            |                      |
+   | 20 65 78 70 61 6e 73 |                     |                      |
+   | 69 6f 6e 2c 20 63 6c |                     |                      |
+   | 69 65 6e 74 20 77 72 |                     |                      |
+   | 69 74 65 20 69 76    |                     |                      |
+   |                      |                     |                      |
+   | 54 4c 53 20 31 2e 33 | TLS 1.3, early      | [I-D.ietf-tls-tls13] |
+   | 2c 20 65 61 72 6c 79 | handshake key       |                      |
+   | 20 68 61 6e 64 73 68 | expansion, server   |                      |
+   | 61 6b 65 20 6b 65 79 | write iv            |                      |
+   | 20 65 78 70 61 6e 73 |                     |                      |
+   | 69 6f 6e 2c 20 73 65 |                     |                      |
+   | 72 76 65 72 20 77 72 |                     |                      |
+   | 69 74 65 20 69 76    |                     |                      |
+   |                      |                     |                      |
+   | 54 4c 53 20 31 2e 33 | TLS 1.3, early      | [I-D.ietf-tls-tls13] |
+
+
+
+Thomson, et al.         Expires October 23, 2016                [Page 7]
+
+Internet-Draft               Context Labels                   April 2016
+
+
+   | 2c 20 65 61 72 6c 79 | application data    |                      |
+   | 20 61 70 70 6c 69 63 | key expansion,      |                      |
+   | 61 74 69 6f 6e 20 64 | client write key    |                      |
+   | 61 74 61 20 6b 65 79 |                     |                      |
+   | 20 65 78 70 61 6e 73 |                     |                      |
+   | 69 6f 6e 2c 20 63 6c |                     |                      |
+   | 69 65 6e 74 20 77 72 |                     |                      |
+   | 69 74 65 20 6b 65 79 |                     |                      |
+   |                      |                     |                      |
+   | 54 4c 53 20 31 2e 33 | TLS 1.3, early      | [I-D.ietf-tls-tls13] |
+   | 2c 20 65 61 72 6c 79 | application data    |                      |
+   | 20 61 70 70 6c 69 63 | key expansion,      |                      |
+   | 61 74 69 6f 6e 20 64 | server write key    |                      |
+   | 61 74 61 20 6b 65 79 |                     |                      |
+   | 20 65 78 70 61 6e 73 |                     |                      |
+   | 69 6f 6e 2c 20 73 65 |                     |                      |
+   | 72 76 65 72 20 77 72 |                     |                      |
+   | 69 74 65 20 6b 65 79 |                     |                      |
+   |                      |                     |                      |
+   | 54 4c 53 20 31 2e 33 | TLS 1.3, early      | [I-D.ietf-tls-tls13] |
+   | 2c 20 65 61 72 6c 79 | application data    |                      |
+   | 20 61 70 70 6c 69 63 | key expansion,      |                      |
+   | 61 74 69 6f 6e 20 64 | client write iv     |                      |
+   | 61 74 61 20 6b 65 79 |                     |                      |
+   | 20 65 78 70 61 6e 73 |                     |                      |
+   | 69 6f 6e 2c 20 63 6c |                     |                      |
+   | 69 65 6e 74 20 77 72 |                     |                      |
+   | 69 74 65 20 69 76    |                     |                      |
+   |                      |                     |                      |
+   | 54 4c 53 20 31 2e 33 | TLS 1.3, early      | [I-D.ietf-tls-tls13] |
+   | 2c 20 65 61 72 6c 79 | application data    |                      |
+   | 20 61 70 70 6c 69 63 | key expansion,      |                      |
+   | 61 74 69 6f 6e 20 64 | server write iv     |                      |
+   | 61 74 61 20 6b 65 79 |                     |                      |
+   | 20 65 78 70 61 6e 73 |                     |                      |
+   | 69 6f 6e 2c 20 73 65 |                     |                      |
+   | 72 76 65 72 20 77 72 |                     |                      |
+   | 69 74 65 20 69 76    |                     |                      |
+   |                      |                     |                      |
+   | 54 4c 53 20 31 2e 33 | TLS 1.3, handshake  | [I-D.ietf-tls-tls13] |
+   | 2c 20 68 61 6e 64 73 | key expansion,      |                      |
+   | 68 61 6b 65 20 6b 65 | client write key    |                      |
+   | 79 20 65 78 70 61 6e |                     |                      |
+   | 73 69 6f 6e 2c 20 63 |                     |                      |
+   | 6c 69 65 6e 74 20 77 |                     |                      |
+   | 72 69 74 65 20 6b 65 |                     |                      |
+   | 79                   |                     |                      |
+   |                      |                     |                      |
+
+
+
+Thomson, et al.         Expires October 23, 2016                [Page 8]
+
+Internet-Draft               Context Labels                   April 2016
+
+
+   | 54 4c 53 20 31 2e 33 | TLS 1.3, handshake  | [I-D.ietf-tls-tls13] |
+   | 2c 20 68 61 6e 64 73 | key expansion,      |                      |
+   | 68 61 6b 65 20 6b 65 | server write key    |                      |
+   | 79 20 65 78 70 61 6e |                     |                      |
+   | 73 69 6f 6e 2c 20 73 |                     |                      |
+   | 65 72 76 65 72 20 77 |                     |                      |
+   | 72 69 74 65 20 6b 65 |                     |                      |
+   | 79                   |                     |                      |
+   |                      |                     |                      |
+   | 54 4c 53 20 31 2e 33 | TLS 1.3, handshake  | [I-D.ietf-tls-tls13] |
+   | 2c 20 68 61 6e 64 73 | key expansion,      |                      |
+   | 68 61 6b 65 20 6b 65 | client write iv     |                      |
+   | 79 20 65 78 70 61 6e |                     |                      |
+   | 73 69 6f 6e 2c 20 63 |                     |                      |
+   | 6c 69 65 6e 74 20 77 |                     |                      |
+   | 72 69 74 65 20 69 76 |                     |                      |
+   |                      |                     |                      |
+   | 54 4c 53 20 31 2e 33 | TLS 1.3, handshake  | [I-D.ietf-tls-tls13] |
+   | 2c 20 68 61 6e 64 73 | key expansion,      |                      |
+   | 68 61 6b 65 20 6b 65 | server write iv     |                      |
+   | 79 20 65 78 70 61 6e |                     |                      |
+   | 73 69 6f 6e 2c 20 73 |                     |                      |
+   | 65 72 76 65 72 20 77 |                     |                      |
+   | 72 69 74 65 20 69 76 |                     |                      |
+   |                      |                     |                      |
+   | 54 4c 53 20 31 2e 33 | TLS 1.3,            | [I-D.ietf-tls-tls13] |
+   | 2c 20 61 70 70 6c 69 | application data    |                      |
+   | 63 61 74 69 6f 6e 20 | key expansion,      |                      |
+   | 64 61 74 61 20 6b 65 | client write key    |                      |
+   | 79 20 65 78 70 61 6e |                     |                      |
+   | 73 69 6f 6e 2c 20 63 |                     |                      |
+   | 6c 69 65 6e 74 20 77 |                     |                      |
+   | 72 69 74 65 20 6b 65 |                     |                      |
+   | 79                   |                     |                      |
+   |                      |                     |                      |
+   | 54 4c 53 20 31 2e 33 | TLS 1.3,            | [I-D.ietf-tls-tls13] |
+   | 2c 20 61 70 70 6c 69 | application data    |                      |
+   | 63 61 74 69 6f 6e 20 | key expansion,      |                      |
+   | 64 61 74 61 20 6b 65 | server write key    |                      |
+   | 79 20 65 78 70 61 6e |                     |                      |
+   | 73 69 6f 6e 2c 20 73 |                     |                      |
+   | 65 72 76 65 72 20 77 |                     |                      |
+   | 72 69 74 65 20 6b 65 |                     |                      |
+   | 79                   |                     |                      |
+   |                      |                     |                      |
+   | 54 4c 53 20 31 2e 33 | TLS 1.3,            | [I-D.ietf-tls-tls13] |
+   | 2c 20 61 70 70 6c 69 | application data    |                      |
+   | 63 61 74 69 6f 6e 20 | key expansion,      |                      |
+
+
+
+Thomson, et al.         Expires October 23, 2016                [Page 9]
+
+Internet-Draft               Context Labels                   April 2016
+
+
+   | 64 61 74 61 20 6b 65 | client write iv     |                      |
+   | 79 20 65 78 70 61 6e |                     |                      |
+   | 73 69 6f 6e 2c 20 63 |                     |                      |
+   | 6c 69 65 6e 74 20 77 |                     |                      |
+   | 72 69 74 65 20 69 76 |                     |                      |
+   |                      |                     |                      |
+   | 54 4c 53 20 31 2e 33 | TLS 1.3,            | [I-D.ietf-tls-tls13] |
+   | 2c 20 61 70 70 6c 69 | application data    |                      |
+   | 63 61 74 69 6f 6e 20 | key expansion,      |                      |
+   | 64 61 74 61 20 6b 65 | server write iv     |                      |
+   | 79 20 65 78 70 61 6e |                     |                      |
+   | 73 69 6f 6e 2c 20 73 |                     |                      |
+   | 65 72 76 65 72 20 77 |                     |                      |
+   | 72 69 74 65 20 69 76 |                     |                      |
+   +----------------------+---------------------+----------------------+
+
+   Note that in the above table, the following categories of entry do
+   not conform with the guidance in Section 4:
+
+   o  Labels for the TLS 1.3 HKDF input
+
+Appendix B.  Existing Protocols without Context Labels
+
+   TLS versions 1.2 [RFC5246] and earlier do not use context labels for
+   signatures though the use of the pseudorandom function (PRF) uses
+   version-agnostic labels.
+
+Appendix C.  Acknowledgments
+
+   This document originated from hallway discussions at IETF 95; thank
+   you to those who helped spark the idea.
+
 Authors' Addresses
 
    Martin Thomson
@@ -269,6 +552,16 @@ Authors' Addresses
    Email: dkg@fifthhorseman.net
 
 
+
+
+
+
+
+Thomson, et al.         Expires October 23, 2016               [Page 10]
+
+Internet-Draft               Context Labels                   April 2016
+
+
    Benjamin Kaduk
    Unaffiliated
 
@@ -277,4 +570,47 @@ Authors' Addresses
 
 
 
-Thomson, et al.         Expires October 23, 2016                [Page 5]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thomson, et al.         Expires October 23, 2016               [Page 11]

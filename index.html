@@ -275,8 +275,12 @@ li, p {
 <link href="#rfc.section.4" rel="Chapter" title="4 Recommendations for Context Labels"/>
 <link href="#rfc.section.5" rel="Chapter" title="5 IANA Considerations"/>
 <link href="#rfc.section.6" rel="Chapter" title="6 Security Considerations"/>
-<link href="#rfc.section.7" rel="Chapter" title="7 Acknowledgments"/>
-<link href="#rfc.references" rel="Chapter" title="8 Normative References"/>
+<link href="#rfc.references" rel="Chapter" title="7 References"/>
+<link href="#rfc.references.1" rel="Chapter" title="7.1 Normative References"/>
+<link href="#rfc.references.2" rel="Chapter" title="7.2 Informative References"/>
+<link href="#rfc.appendix.A" rel="Chapter" title="A Existing Protocols with Context Labels"/>
+<link href="#rfc.appendix.B" rel="Chapter" title="B Existing Protocols without Context Labels"/>
+<link href="#rfc.appendix.C" rel="Chapter" title="C Acknowledgments"/>
 <link href="#rfc.authors" rel="Chapter"/>
 
 
@@ -361,8 +365,12 @@ li, p {
 <li>4.   <a href="#rfc.section.4">Recommendations for Context Labels</a></li>
 <li>5.   <a href="#rfc.section.5">IANA Considerations</a></li>
 <li>6.   <a href="#rfc.section.6">Security Considerations</a></li>
-<li>7.   <a href="#rfc.section.7">Acknowledgments</a></li>
-<li>8.   <a href="#rfc.references">Normative References</a></li>
+<li>7.   <a href="#rfc.references">References</a></li>
+<ul><li>7.1.   <a href="#rfc.references.1">Normative References</a></li>
+<li>7.2.   <a href="#rfc.references.2">Informative References</a></li>
+</ul><li>Appendix A.   <a href="#rfc.appendix.A">Existing Protocols with Context Labels</a></li>
+<li>Appendix B.   <a href="#rfc.appendix.B">Existing Protocols without Context Labels</a></li>
+<li>Appendix C.   <a href="#rfc.appendix.C">Acknowledgments</a></li>
 <li><a href="#rfc.authors">Authors' Addresses</a></li>
 
 
@@ -400,7 +408,7 @@ li, p {
   <li>HMAC <a href="#RFC2104">[RFC2104]</a></li>
   <li>Ed25519 and Ed25519ph <a href="#I-D.irtf-cfrg-eddsa">[I-D.irtf-cfrg-eddsa]</a></li>
 </ul>
-<h1 id="rfc.section.4"><a href="#rfc.section.4">4.</a> <a href="#recommendations-for-context-labels" id="recommendations-for-context-labels">Recommendations for Context Labels</a></h1>
+<h1 id="rfc.section.4"><a href="#rfc.section.4">4.</a> <a href="#rec" id="rec">Recommendations for Context Labels</a></h1>
 <p id="rfc.section.4.p.1">In order to avoid attacks that permit use of a cryptographic object for purposes other than intended, a context label C MUST NOT be a prefix of any other context label.</p>
 <p id="rfc.section.4.p.2">New specifications defining context labels SHOULD select context labels that end with a single zero-valued octet and do not contain any other zero-valued octets.  Context labels SHOULD be at least 12 octets in length.</p>
 <h1 id="rfc.section.5"><a href="#rfc.section.5">5.</a> <a href="#iana-considerations" id="iana-considerations">IANA Considerations</a></h1>
@@ -418,11 +426,11 @@ li, p {
 </dl>
 <p id="rfc.section.5.p.4">Context labels in this registry MUST NOT be a prefix of any other context label in the registry.  For example, if 0x01ab00 is registered, then a registration for 0x01 or 0x01ab007c MUST be rejected.</p>
 <p id="rfc.section.5.p.5">A context label that is 12 octets or more in length and contains exactly one zero-valued octet at the end can be registered on a First-Come, First-Served basis <a href="#RFC5226">[RFC5226]</a>.  Context labels that do not meet these requirements require Expert Review <a href="#RFC5226">[RFC5226]</a>.</p>
+<p id="rfc.section.5.p.6">The initial contents of this registry are included in <a href="#ok">Appendix A</a>.</p>
 <h1 id="rfc.section.6"><a href="#rfc.section.6">6.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a></h1>
-<p id="rfc.section.6.p.1">Derp, derp, derp.</p>
-<h1 id="rfc.section.7"><a href="#rfc.section.7">7.</a> <a href="#acknowledgments" id="acknowledgments">Acknowledgments</a></h1>
-<p id="rfc.section.7.p.1">This document originated from hallway discussions at IETF 95; thank you to those who helped spark the idea.</p>
-<h1 id="rfc.references"><a href="#rfc.references">8.</a> Normative References</h1>
+<p id="rfc.section.6.p.1">In general, it is best to limit any cryptographic material to being used for a single purpose.</p>
+<h1 id="rfc.references"><a href="#rfc.references">7.</a> References</h1>
+<h2 id="rfc.references.1"><a href="#rfc.references.1">7.1.</a> Normative References</h2>
 <table>
   <tbody>
     <tr>
@@ -469,6 +477,200 @@ li, p {
     </tr>
   </tbody>
 </table>
+<h2 id="rfc.references.2"><a href="#rfc.references.2">7.2.</a> Informative References</h2>
+<table>
+  <tbody>
+    <tr>
+      <td class="reference">
+        <b id="I-D.ietf-tls-tls13">[I-D.ietf-tls-tls13]</b>
+      </td>
+      <td class="top"><a>Rescorla, E.</a>, "<a href="http://tools.ietf.org/html/draft-ietf-tls-tls13-12">The Transport Layer Security (TLS) Protocol Version 1.3</a>", Internet-Draft draft-ietf-tls-tls13-12, March 2016.</td>
+    </tr>
+  </tbody>
+</table>
+<h1 id="rfc.appendix.A"><a href="#rfc.appendix.A">Appendix A.</a> <a href="#ok" id="ok">Existing Protocols with Context Labels</a></h1>
+<table cellpadding="3" cellspacing="0" class="tt full center">
+  <thead>
+    <tr>
+      <th class="left">Context label</th>
+      <th class="left">String</th>
+      <th class="left">Specification</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="left">20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 54 4c 53 20 31 2e 33 2c 20 73 65 72 76 65 72 20 43 65 72 74 69 66 69 63 61 74 65 56 65 72 69 66 79 00</td>
+      <td class="left">(64 spaces)TLS 1.3, server CertificateVerify\0</td>
+      <td class="left">
+        <a href="#I-D.ietf-tls-tls13">[I-D.ietf-tls-tls13]</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="left">20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 54 4c 53 20 31 2e 33 2c 20 63 6c 69 65 6e 74 20 43 65 72 74 69 66 69 63 61 74 65 56 65 72 69 66 79 00</td>
+      <td class="left">(64 spaces)TLS 1.3, client CertificateVerify\0</td>
+      <td class="left">
+        <a href="#I-D.ietf-tls-tls13">[I-D.ietf-tls-tls13]</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="left">54 4c 53 20 31 2e 33 2c 20 65 78 70 61 6e 64 65 64 20 73 74 61 74 69 63 20 73 65 63 72 65 74</td>
+      <td class="left">TLS 1.3, expanded static secret</td>
+      <td class="left">
+        <a href="#I-D.ietf-tls-tls13">[I-D.ietf-tls-tls13]</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="left">54 4c 53 20 31 2e 33 2c 20 65 78 70 61 6e 64 65 64 20 65 70 68 65 6d 65 72 61 6c 20 73 65 63 72 65 74</td>
+      <td class="left">TLS 1.3, expanded ephemeral secret</td>
+      <td class="left">
+        <a href="#I-D.ietf-tls-tls13">[I-D.ietf-tls-tls13]</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="left">54 4c 53 20 31 2e 33 2c 20 74 72 61 66 66 69 63 20 73 65 63 72 65 74</td>
+      <td class="left">TLS 1.3, traffic secret</td>
+      <td class="left">
+        <a href="#I-D.ietf-tls-tls13">[I-D.ietf-tls-tls13]</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="left">54 4c 53 20 31 2e 33 2c 20 72 65 73 75 6d 70 74 69 6f 6e 20 6d 61 73 74 65 72 20 73 65 63 72 65 74</td>
+      <td class="left">TLS 1.3, resumption master secret</td>
+      <td class="left">
+        <a href="#I-D.ietf-tls-tls13">[I-D.ietf-tls-tls13]</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="left">54 4c 53 20 31 2e 33 2c 20 65 78 70 6f 72 74 65 72 20 6d 61 73 74 65 72 20 73 65 63 72 65 74</td>
+      <td class="left">TLS 1.3, exporter master secret</td>
+      <td class="left">
+        <a href="#I-D.ietf-tls-tls13">[I-D.ietf-tls-tls13]</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="left">54 4c 53 20 31 2e 33 2c 20 65 61 72 6c 79 20 68 61 6e 64 73 68 61 6b 65 20 6b 65 79 20 65 78 70 61 6e 73 69 6f 6e 2c 20 63 6c 69 65 6e 74 20 77 72 69 74 65 20 6b 65 79</td>
+      <td class="left">TLS 1.3, early handshake key expansion, client write key</td>
+      <td class="left">
+        <a href="#I-D.ietf-tls-tls13">[I-D.ietf-tls-tls13]</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="left">54 4c 53 20 31 2e 33 2c 20 65 61 72 6c 79 20 68 61 6e 64 73 68 61 6b 65 20 6b 65 79 20 65 78 70 61 6e 73 69 6f 6e 2c 20 73 65 72 76 65 72 20 77 72 69 74 65 20 6b 65 79</td>
+      <td class="left">TLS 1.3, early handshake key expansion, server write key</td>
+      <td class="left">
+        <a href="#I-D.ietf-tls-tls13">[I-D.ietf-tls-tls13]</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="left">54 4c 53 20 31 2e 33 2c 20 65 61 72 6c 79 20 68 61 6e 64 73 68 61 6b 65 20 6b 65 79 20 65 78 70 61 6e 73 69 6f 6e 2c 20 63 6c 69 65 6e 74 20 77 72 69 74 65 20 69 76</td>
+      <td class="left">TLS 1.3, early handshake key expansion, client write iv</td>
+      <td class="left">
+        <a href="#I-D.ietf-tls-tls13">[I-D.ietf-tls-tls13]</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="left">54 4c 53 20 31 2e 33 2c 20 65 61 72 6c 79 20 68 61 6e 64 73 68 61 6b 65 20 6b 65 79 20 65 78 70 61 6e 73 69 6f 6e 2c 20 73 65 72 76 65 72 20 77 72 69 74 65 20 69 76</td>
+      <td class="left">TLS 1.3, early handshake key expansion, server write iv</td>
+      <td class="left">
+        <a href="#I-D.ietf-tls-tls13">[I-D.ietf-tls-tls13]</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="left">54 4c 53 20 31 2e 33 2c 20 65 61 72 6c 79 20 61 70 70 6c 69 63 61 74 69 6f 6e 20 64 61 74 61 20 6b 65 79 20 65 78 70 61 6e 73 69 6f 6e 2c 20 63 6c 69 65 6e 74 20 77 72 69 74 65 20 6b 65 79</td>
+      <td class="left">TLS 1.3, early application data key expansion, client write key</td>
+      <td class="left">
+        <a href="#I-D.ietf-tls-tls13">[I-D.ietf-tls-tls13]</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="left">54 4c 53 20 31 2e 33 2c 20 65 61 72 6c 79 20 61 70 70 6c 69 63 61 74 69 6f 6e 20 64 61 74 61 20 6b 65 79 20 65 78 70 61 6e 73 69 6f 6e 2c 20 73 65 72 76 65 72 20 77 72 69 74 65 20 6b 65 79</td>
+      <td class="left">TLS 1.3, early application data key expansion, server write key</td>
+      <td class="left">
+        <a href="#I-D.ietf-tls-tls13">[I-D.ietf-tls-tls13]</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="left">54 4c 53 20 31 2e 33 2c 20 65 61 72 6c 79 20 61 70 70 6c 69 63 61 74 69 6f 6e 20 64 61 74 61 20 6b 65 79 20 65 78 70 61 6e 73 69 6f 6e 2c 20 63 6c 69 65 6e 74 20 77 72 69 74 65 20 69 76</td>
+      <td class="left">TLS 1.3, early application data key expansion, client write iv</td>
+      <td class="left">
+        <a href="#I-D.ietf-tls-tls13">[I-D.ietf-tls-tls13]</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="left">54 4c 53 20 31 2e 33 2c 20 65 61 72 6c 79 20 61 70 70 6c 69 63 61 74 69 6f 6e 20 64 61 74 61 20 6b 65 79 20 65 78 70 61 6e 73 69 6f 6e 2c 20 73 65 72 76 65 72 20 77 72 69 74 65 20 69 76</td>
+      <td class="left">TLS 1.3, early application data key expansion, server write iv</td>
+      <td class="left">
+        <a href="#I-D.ietf-tls-tls13">[I-D.ietf-tls-tls13]</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="left">54 4c 53 20 31 2e 33 2c 20 68 61 6e 64 73 68 61 6b 65 20 6b 65 79 20 65 78 70 61 6e 73 69 6f 6e 2c 20 63 6c 69 65 6e 74 20 77 72 69 74 65 20 6b 65 79</td>
+      <td class="left">TLS 1.3, handshake key expansion, client write key</td>
+      <td class="left">
+        <a href="#I-D.ietf-tls-tls13">[I-D.ietf-tls-tls13]</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="left">54 4c 53 20 31 2e 33 2c 20 68 61 6e 64 73 68 61 6b 65 20 6b 65 79 20 65 78 70 61 6e 73 69 6f 6e 2c 20 73 65 72 76 65 72 20 77 72 69 74 65 20 6b 65 79</td>
+      <td class="left">TLS 1.3, handshake key expansion, server write key</td>
+      <td class="left">
+        <a href="#I-D.ietf-tls-tls13">[I-D.ietf-tls-tls13]</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="left">54 4c 53 20 31 2e 33 2c 20 68 61 6e 64 73 68 61 6b 65 20 6b 65 79 20 65 78 70 61 6e 73 69 6f 6e 2c 20 63 6c 69 65 6e 74 20 77 72 69 74 65 20 69 76</td>
+      <td class="left">TLS 1.3, handshake key expansion, client write iv</td>
+      <td class="left">
+        <a href="#I-D.ietf-tls-tls13">[I-D.ietf-tls-tls13]</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="left">54 4c 53 20 31 2e 33 2c 20 68 61 6e 64 73 68 61 6b 65 20 6b 65 79 20 65 78 70 61 6e 73 69 6f 6e 2c 20 73 65 72 76 65 72 20 77 72 69 74 65 20 69 76</td>
+      <td class="left">TLS 1.3, handshake key expansion, server write iv</td>
+      <td class="left">
+        <a href="#I-D.ietf-tls-tls13">[I-D.ietf-tls-tls13]</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="left">54 4c 53 20 31 2e 33 2c 20 61 70 70 6c 69 63 61 74 69 6f 6e 20 64 61 74 61 20 6b 65 79 20 65 78 70 61 6e 73 69 6f 6e 2c 20 63 6c 69 65 6e 74 20 77 72 69 74 65 20 6b 65 79</td>
+      <td class="left">TLS 1.3, application data key expansion, client write key</td>
+      <td class="left">
+        <a href="#I-D.ietf-tls-tls13">[I-D.ietf-tls-tls13]</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="left">54 4c 53 20 31 2e 33 2c 20 61 70 70 6c 69 63 61 74 69 6f 6e 20 64 61 74 61 20 6b 65 79 20 65 78 70 61 6e 73 69 6f 6e 2c 20 73 65 72 76 65 72 20 77 72 69 74 65 20 6b 65 79</td>
+      <td class="left">TLS 1.3, application data key expansion, server write key</td>
+      <td class="left">
+        <a href="#I-D.ietf-tls-tls13">[I-D.ietf-tls-tls13]</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="left">54 4c 53 20 31 2e 33 2c 20 61 70 70 6c 69 63 61 74 69 6f 6e 20 64 61 74 61 20 6b 65 79 20 65 78 70 61 6e 73 69 6f 6e 2c 20 63 6c 69 65 6e 74 20 77 72 69 74 65 20 69 76</td>
+      <td class="left">TLS 1.3, application data key expansion, client write iv</td>
+      <td class="left">
+        <a href="#I-D.ietf-tls-tls13">[I-D.ietf-tls-tls13]</a>
+      </td>
+    </tr>
+    <tr>
+      <td class="left">54 4c 53 20 31 2e 33 2c 20 61 70 70 6c 69 63 61 74 69 6f 6e 20 64 61 74 61 20 6b 65 79 20 65 78 70 61 6e 73 69 6f 6e 2c 20 73 65 72 76 65 72 20 77 72 69 74 65 20 69 76</td>
+      <td class="left">TLS 1.3, application data key expansion, server write iv</td>
+      <td class="left">
+        <a href="#I-D.ietf-tls-tls13">[I-D.ietf-tls-tls13]</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p id="rfc.section.A.p.1">Note that in the above table, the following categories of entry do not conform with the guidance in <a href="#rec">Section 4</a>:</p>
+<p/>
+
+<ul>
+  <li>Labels for the TLS 1.3 HKDF input</li>
+</ul>
+<h1 id="rfc.appendix.B"><a href="#rfc.appendix.B">Appendix B.</a> <a href="#bad" id="bad">Existing Protocols without Context Labels</a></h1>
+<p id="rfc.section.B.p.1">TLS versions 1.2 [RFC5246] and earlier do not use context labels for signatures though the use of the pseudorandom function (PRF) uses version-agnostic labels.</p>
+<h1 id="rfc.appendix.C"><a href="#rfc.appendix.C">Appendix C.</a> <a href="#acknowledgments" id="acknowledgments">Acknowledgments</a></h1>
+<p id="rfc.section.C.p.1">This document originated from hallway discussions at IETF 95; thank you to those who helped spark the idea.</p>
 <h1 id="rfc.authors">
   <a href="#rfc.authors">Authors' Addresses</a>
 </h1>

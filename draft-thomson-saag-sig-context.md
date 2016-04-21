@@ -1,6 +1,6 @@
 ---
-title: "Using Context Strings in Digital Signatures"
-abbrev: "Signature Context"
+title: "Using Context Labels for Domain Separation of Cryptographic Objects"
+abbrev: "Context Labels"
 docname: draft-thomson-saag-sig-context-latest
 date: 2016
 category: std

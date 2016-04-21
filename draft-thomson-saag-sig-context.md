@@ -47,10 +47,10 @@ informative:
 
 --- abstract
 
-A single cryptographic key is often relied upon to produce muliple cryptographic
-artifacts that each have different semantics.  This produces a potential problem
-whereby artifacts with different intended uses can be confused.  The addition of
-context labels removes this problem.
+A single cryptographic key is sometimes relied upon to produce muliple
+cryptographic artifacts that each have different semantics.  This produces a
+potential problem whereby artifacts with different intended uses can be
+confused.  The addition of context labels removes this problem.
 
 
 --- middle

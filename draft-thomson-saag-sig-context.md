@@ -82,7 +82,7 @@ interpreted as described in [RFC2119].
 
 The following signature schemes define an explicit context string argument:
 
-* EdDSA [I-D.irtf-cfrg-eddsa] defines a `context` argument.
+* Ed448 and Ed448ph [I-D.irtf-cfrg-eddsa] define a `context` argument.
 
 * HKDF [RFC5869] specifies an `info` argument to the HKDF-Expand function.
 
@@ -108,8 +108,12 @@ of the context and the message.
 This scheme MUST be used with:
 
 * RSA (both PKCS#1 and PSS) [RFC3447]
+
 * ECDSA [X9.62]
+
 * HMAC [RFC2104]  ???
+
+* Ed25519 and Ed25519ph [I-D.irtf-cfrg-eddsa]
 
 
 # Recommendations for Signature Context Strings

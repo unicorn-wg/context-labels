@@ -5,8 +5,10 @@
 Network Working Group                                         M. Thomson
 Internet-Draft                                                   Mozilla
 Intended status: Standards Track                              D. Gillmor
-Expires: October 14, 2016                                           ACLU
-                                                          April 12, 2016
+Expires: October 23, 2016                                           ACLU
+                                                                B. Kaduk
+                                                            Unaffiliated
+                                                          April 21, 2016
 
 
               Using Context Strings in Digital Signatures
@@ -35,7 +37,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on October 14, 2016.
+   This Internet-Draft will expire on October 23, 2016.
 
 Copyright Notice
 
@@ -48,16 +50,15 @@ Copyright Notice
    publication of this document.  Please review these documents
    carefully, as they describe your rights and restrictions with respect
    to this document.  Code Components extracted from this document must
-   include Simplified BSD License text as described in Section 4.e of
 
 
 
-
-Thomson & Gillmor       Expires October 14, 2016                [Page 1]
+Thomson, et al.         Expires October 23, 2016                [Page 1]
 
 Internet-Draft              Signature Context                 April 2016
 
 
+   include Simplified BSD License text as described in Section 4.e of
    the Trust Legal Provisions and are provided without warranty as
    described in the Simplified BSD License.
 
@@ -108,8 +109,7 @@ Table of Contents
 
 
 
-
-Thomson & Gillmor       Expires October 14, 2016                [Page 2]
+Thomson, et al.         Expires October 23, 2016                [Page 2]
 
 Internet-Draft              Signature Context                 April 2016
 
@@ -165,7 +165,7 @@ Internet-Draft              Signature Context                 April 2016
 
 
 
-Thomson & Gillmor       Expires October 14, 2016                [Page 3]
+Thomson, et al.         Expires October 23, 2016                [Page 3]
 
 Internet-Draft              Signature Context                 April 2016
 
@@ -189,7 +189,8 @@ Internet-Draft              Signature Context                 April 2016
 
 7.  Acknowledgments
 
-   Benjamin Kaduk contributed to this document.
+   This document originated from hallway discussions at IETF 95; thank
+   you to those who helped spark the idea.
 
 8.  Normative References
 
@@ -220,8 +221,7 @@ Internet-Draft              Signature Context                 April 2016
 
 
 
-
-Thomson & Gillmor       Expires October 14, 2016                [Page 4]
+Thomson, et al.         Expires October 23, 2016                [Page 4]
 
 Internet-Draft              Signature Context                 April 2016
 
@@ -249,6 +249,10 @@ Authors' Addresses
    Email: dkg@fifthhorseman.net
 
 
+   Benjamin Kaduk
+   Unaffiliated
+
+   Email: kaduk@mit.edu
 
 
 
@@ -273,8 +277,4 @@ Authors' Addresses
 
 
 
-
-
-
-
-Thomson & Gillmor       Expires October 14, 2016                [Page 5]
+Thomson, et al.         Expires October 23, 2016                [Page 5]

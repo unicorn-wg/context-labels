@@ -74,7 +74,7 @@ Table of Contents
    7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   4
      7.1.  Normative References  . . . . . . . . . . . . . . . . . .   5
      7.2.  Informative References  . . . . . . . . . . . . . . . . .   5
-   Appendix A.  Existing Protocols with Context Labels . . . . . . .   5
+   Appendix A.  Existing Protocols with Context Labels . . . . . . .   6
    Appendix B.  Existing Protocols without Context Labels  . . . . .  10
    Appendix C.  Acknowledgments  . . . . . . . . . . . . . . . . . .  10
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  10
@@ -269,11 +269,11 @@ Internet-Draft               Context Labels                   April 2016
               Version 1.3", draft-ietf-tls-tls13-12 (work in progress),
               March 2016.
 
-Appendix A.  Existing Protocols with Context Labels
+   [RFC5246]  Dierks, T. and E. Rescorla, "The Transport Layer Security
+              (TLS) Protocol Version 1.2", RFC 5246,
+              DOI 10.17487/RFC5246, August 2008,
+              <http://www.rfc-editor.org/info/rfc5246>.
 
-   +----------------------+---------------------+----------------------+
-   | Context label        | String              | Specification        |
-   +----------------------+---------------------+----------------------+
 
 
 
@@ -282,6 +282,11 @@ Thomson, et al.         Expires October 23, 2016                [Page 5]
 Internet-Draft               Context Labels                   April 2016
 
 
+Appendix A.  Existing Protocols with Context Labels
+
+   +----------------------+---------------------+----------------------+
+   | Context label        | String              | Specification        |
+   +----------------------+---------------------+----------------------+
    | 20 20 20 20 20 20 20 | (64 spaces)TLS 1.3, | [I-D.ietf-tls-tls13] |
    | 20 20 20 20 20 20 20 | server              |                      |
    | 20 20 20 20 20 20 20 | CertificateVerify\0 |                      |
@@ -325,11 +330,6 @@ Internet-Draft               Context Labels                   April 2016
    | 73 65 63 72 65 74    |                     |                      |
    |                      |                     |                      |
    | 54 4c 53 20 31 2e 33 | TLS 1.3, traffic    | [I-D.ietf-tls-tls13] |
-   | 2c 20 74 72 61 66 66 | secret              |                      |
-   | 69 63 20 73 65 63 72 |                     |                      |
-   | 65 74                |                     |                      |
-   |                      |                     |                      |
-   | 54 4c 53 20 31 2e 33 | TLS 1.3, resumption | [I-D.ietf-tls-tls13] |
 
 
 
@@ -338,6 +338,11 @@ Thomson, et al.         Expires October 23, 2016                [Page 6]
 Internet-Draft               Context Labels                   April 2016
 
 
+   | 2c 20 74 72 61 66 66 | secret              |                      |
+   | 69 63 20 73 65 63 72 |                     |                      |
+   | 65 74                |                     |                      |
+   |                      |                     |                      |
+   | 54 4c 53 20 31 2e 33 | TLS 1.3, resumption | [I-D.ietf-tls-tls13] |
    | 2c 20 72 65 73 75 6d | master secret       |                      |
    | 70 74 69 6f 6e 20 6d |                     |                      |
    | 61 73 74 65 72 20 73 |                     |                      |
@@ -381,11 +386,6 @@ Internet-Draft               Context Labels                   April 2016
    | 20 68 61 6e 64 73 68 | expansion, server   |                      |
    | 61 6b 65 20 6b 65 79 | write iv            |                      |
    | 20 65 78 70 61 6e 73 |                     |                      |
-   | 69 6f 6e 2c 20 73 65 |                     |                      |
-   | 72 76 65 72 20 77 72 |                     |                      |
-   | 69 74 65 20 69 76    |                     |                      |
-   |                      |                     |                      |
-   | 54 4c 53 20 31 2e 33 | TLS 1.3, early      | [I-D.ietf-tls-tls13] |
 
 
 
@@ -394,6 +394,11 @@ Thomson, et al.         Expires October 23, 2016                [Page 7]
 Internet-Draft               Context Labels                   April 2016
 
 
+   | 69 6f 6e 2c 20 73 65 |                     |                      |
+   | 72 76 65 72 20 77 72 |                     |                      |
+   | 69 74 65 20 69 76    |                     |                      |
+   |                      |                     |                      |
+   | 54 4c 53 20 31 2e 33 | TLS 1.3, early      | [I-D.ietf-tls-tls13] |
    | 2c 20 65 61 72 6c 79 | application data    |                      |
    | 20 61 70 70 6c 69 63 | key expansion,      |                      |
    | 61 74 69 6f 6e 20 64 | client write key    |                      |
@@ -437,11 +442,6 @@ Internet-Draft               Context Labels                   April 2016
    | 2c 20 68 61 6e 64 73 | key expansion,      |                      |
    | 68 61 6b 65 20 6b 65 | client write key    |                      |
    | 79 20 65 78 70 61 6e |                     |                      |
-   | 73 69 6f 6e 2c 20 63 |                     |                      |
-   | 6c 69 65 6e 74 20 77 |                     |                      |
-   | 72 69 74 65 20 6b 65 |                     |                      |
-   | 79                   |                     |                      |
-   |                      |                     |                      |
 
 
 
@@ -450,6 +450,11 @@ Thomson, et al.         Expires October 23, 2016                [Page 8]
 Internet-Draft               Context Labels                   April 2016
 
 
+   | 73 69 6f 6e 2c 20 63 |                     |                      |
+   | 6c 69 65 6e 74 20 77 |                     |                      |
+   | 72 69 74 65 20 6b 65 |                     |                      |
+   | 79                   |                     |                      |
+   |                      |                     |                      |
    | 54 4c 53 20 31 2e 33 | TLS 1.3, handshake  | [I-D.ietf-tls-tls13] |
    | 2c 20 68 61 6e 64 73 | key expansion,      |                      |
    | 68 61 6b 65 20 6b 65 | server write key    |                      |
@@ -493,11 +498,6 @@ Internet-Draft               Context Labels                   April 2016
    | 73 69 6f 6e 2c 20 73 |                     |                      |
    | 65 72 76 65 72 20 77 |                     |                      |
    | 72 69 74 65 20 6b 65 |                     |                      |
-   | 79                   |                     |                      |
-   |                      |                     |                      |
-   | 54 4c 53 20 31 2e 33 | TLS 1.3,            | [I-D.ietf-tls-tls13] |
-   | 2c 20 61 70 70 6c 69 | application data    |                      |
-   | 63 61 74 69 6f 6e 20 | key expansion,      |                      |
 
 
 
@@ -506,6 +506,11 @@ Thomson, et al.         Expires October 23, 2016                [Page 9]
 Internet-Draft               Context Labels                   April 2016
 
 
+   | 79                   |                     |                      |
+   |                      |                     |                      |
+   | 54 4c 53 20 31 2e 33 | TLS 1.3,            | [I-D.ietf-tls-tls13] |
+   | 2c 20 61 70 70 6c 69 | application data    |                      |
+   | 63 61 74 69 6f 6e 20 | key expansion,      |                      |
    | 64 61 74 61 20 6b 65 | client write iv     |                      |
    | 79 20 65 78 70 61 6e |                     |                      |
    | 73 69 6f 6e 2c 20 63 |                     |                      |
@@ -546,11 +551,6 @@ Authors' Addresses
    Email: martin.thomson@gmail.com
 
 
-   Daniel Kahn Gillmor
-   ACLU
-
-   Email: dkg@fifthhorseman.net
-
 
 
 
@@ -562,16 +562,16 @@ Thomson, et al.         Expires October 23, 2016               [Page 10]
 Internet-Draft               Context Labels                   April 2016
 
 
+   Daniel Kahn Gillmor
+   ACLU
+
+   Email: dkg@fifthhorseman.net
+
+
    Benjamin Kaduk
    Unaffiliated
 
    Email: kaduk@mit.edu
-
-
-
-
-
-
 
 
 

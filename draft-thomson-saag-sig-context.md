@@ -130,7 +130,7 @@ This scheme MUST be used with:
 * Ed25519 and Ed25519ph [I-D.irtf-cfrg-eddsa]
 
 
-# Recommendations for Context Labels
+# Recommendations for Context Labels {#rec}
 
 In order to avoid attacks that permit use of a cryptographic object for purposes
 other than intended, a context label C MUST NOT be a prefix of any other
@@ -207,6 +207,11 @@ single purpose.
 | 54 4c 53 20 31 2e 33 2c 20 61 70 70 6c 69 63 61 74 69 6f 6e 20 64 61 74 61 20 6b 65 79 20 65 78 70 61 6e 73 69 6f 6e 2c 20 73 65 72 76 65 72 20 77 72 69 74 65 20 6b 65 79 | TLS 1.3, application data key expansion, server write key | [I-D.ietf-tls-tls13] |
 | 54 4c 53 20 31 2e 33 2c 20 61 70 70 6c 69 63 61 74 69 6f 6e 20 64 61 74 61 20 6b 65 79 20 65 78 70 61 6e 73 69 6f 6e 2c 20 63 6c 69 65 6e 74 20 77 72 69 74 65 20 69 76 | TLS 1.3, application data key expansion, client write iv | [I-D.ietf-tls-tls13] |
 | 54 4c 53 20 31 2e 33 2c 20 61 70 70 6c 69 63 61 74 69 6f 6e 20 64 61 74 61 20 6b 65 79 20 65 78 70 61 6e 73 69 6f 6e 2c 20 73 65 72 76 65 72 20 77 72 69 74 65 20 69 76 | TLS 1.3, application data key expansion, server write iv | [I-D.ietf-tls-tls13] |
+
+Note that in the above table, the following categories of entry do not conform
+with the guidance in {{rec}}:
+
+* Labels for the TLS 1.3 HKDF input
 
 
 # Existing Protocols without Context Labels {#bad}

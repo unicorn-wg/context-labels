@@ -1,6 +1,6 @@
 ---
-title: "Using Context Strings in Digital Signatures"
-abbrev: "Signature Context"
+title: "Using Context Labels for Domain Separation of Cryptographic Objects"
+abbrev: "Context Labels"
 docname: draft-thomson-saag-sig-context-latest
 date: 2016
 category: std
@@ -47,30 +47,41 @@ informative:
 
 --- abstract
 
-A single digital signature key is often relied upon to produce signatures that
-have different semantics.  This produces a potential problem whereby signatures
-with different intended uses can be confused.  The addition of context strings
-in signatures removes this problem.
+A single cryptographic key is sometimes relied upon to produce muliple
+cryptographic artifacts that each have different semantics.  This produces a
+potential problem whereby artifacts with different intended uses can be
+confused.  The addition of context labels removes this problem.
+
 
 --- middle
 
 # Introduction
 
-There are a handful of cryptographic primitives that are used to build
-protocols that are used on the Internet: digital signatures, key derivation
-algorithms, message integrity codes, etc..  These protocols are generally
-developed in isolation from each other, with minimal effort to ensure that data
-structures used in one protocol do not have plausible interpretations in other
-protocols.  This gives an opportunity for cross-protocol attacks, wherein a
-well-behaved participant in one protocol can be abused by an attacker to create
+The same cryptographic primitive can be used in a range of different contexts.
+These uses are often developed in isolation, which leads to the potential for
+data structures that are used in one protocol having plausible interpretations
+in other protocols.  This gives an opportunity for cross-protocol attacks,
+wherein a well-behaved participant in one protocol can be coerced into creating
 a cryptographic object that, when interpreted by a different protocol,
-introduces a vulnerability.  Including a unique protocol-specific context label
-as input to all cryptographic operations prevents a cryptographic object
-created in one protocol from being interpreted in the context of a different
-protocol.  To avoid breaking existing protcols, only new constructs can be
-given such context labels as they are added to protocols, but cross-protocol
-attacks will be avoided between primitives/protocols that do use context
-lables.
+introduces a vulnerability.
+
+Reuse of the same key in multiple contexts is strongly discouraged.  However, in
+some cases, use of the same key might be unavoidable.  For example, the same key
+might need to be used in multiple versions of the same protocol, or a protocol
+might define multiple uses for a particular type of key.
+
+Including a unique protocol- and usage- specific context label as input to a
+cryptographic operation prevents objects created in one context from being
+mistakenly used in a different context.
+
+This document describes a uniform approach for the inclusion of context labels
+and a registry for unique labels.  It covers the use of these labels in digital
+signatures, key derivation functions (KDFs), and message authentication codes
+(MACs).
+
+Existing protocols might already include a unique context label.  This document
+collects some of these existing labels into the context label registry.
+
 
 ## Notational Conventions
 
@@ -78,32 +89,34 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
 interpreted as described in [RFC2119].
 
-# Signature Functions with Context
 
-The following signature schemes define an explicit context string argument:
+# Existing Functions with Context Labels
+
+The following cryptographic primitives define an explicit argument for
+identifying a context:
 
 * Ed448 and Ed448ph [I-D.irtf-cfrg-eddsa] define a `context` argument.
 
 * HKDF [RFC5869] specifies an `info` argument to the HKDF-Expand function.
 
 
-# Generic Signature with Context {#sig-context}
+# Generic Signature or MAC Function with Context {#context}
 
-Many pre-existing signature schemes do not define an explicit context string.
-This document defines a method for using context strings in existing signature
-functions.
+Many pre-existing signature and MAC schemes do not define an explicit context
+label.  This document defines a new signature function that adds a context label
+to an existing function.
 
 Given a signature function S that takes a key K and message M as a sequence of
-octets, this section defines a signature with context function Sc.  The
-signature with context function takes three arguments, K, M, and a context
-string C as a sequence of octets and is defined as:
+octets, a signature with context function Sc is defined.  The signature with
+context function Sc takes three arguments, K, M, and a context label C as a
+sequence of octets and is defined as:
 
 ~~~ inline
    Sc(K, M, C) = S(K, C || M)
 ~~~
 
 That is, the signature is changed to accept a message that is the concatenation
-of the context and the message.
+of the context label and the message.
 
 This scheme MUST be used with:
 
@@ -111,44 +124,48 @@ This scheme MUST be used with:
 
 * ECDSA [X9.62]
 
-* HMAC [RFC2104]  ???
+* HMAC [RFC2104]
 
 * Ed25519 and Ed25519ph [I-D.irtf-cfrg-eddsa]
 
 
-# Recommendations for Signature Context Strings
+# Recommendations for Context Labels
 
-In order to avoid attacks that permit use of signatures for purposes other than
-intended, the context C MUST NOT be a prefix of any other signature context
-string.
+In order to avoid attacks that permit use of a cryptographic object for purposes
+other than intended, a context label C MUST NOT be a prefix of any other
+context label.
 
-New specifications defining context strings for use in signing, SHOULD select
-context strings that end with a single zero-valued octet and do not contain any
-other zero-valued octets.  Context strings SHOULD be at least 12 octets in
-length.
+New specifications defining context labels SHOULD select context labels that end
+with a single zero-valued octet and do not contain any other zero-valued octets.
+Context labels SHOULD be at least 12 octets in length.
 
 
 # IANA Considerations
 
-This document establishes "Signature Context String" registry.
+This document establishes a "Cryptographic Context Label" registry.
 
 Entries in this registry contain the following fields:
 
-Context string:
+Context Label:
 
-: A sequence of octets between 1 and 255 octets in length
+: A sequence of octets between 1 and 255 octets in length, displayed as a
+  hexadecimal string
+
+String:
+
+: An optional, informative ASCII representation of the context label
 
 Specification:
 
-: A reference to a specification describing the use of the context string.
+: A reference to a specification describing the use of the context label
 
-Context strings in this registry MUST NOT be a prefix of any other context
-string in the registry.  For example, if 0x0100 is registered, then a
-registration for 0x01 or 0x010000 MUST be rejected.
+Context labels in this registry MUST NOT be a prefix of any other context label
+in the registry.  For example, if 0x01ab00 is registered, then a registration for
+0x01 or 0x01ab007c MUST be rejected.
 
-A context string that is at least 12 octets in length and contains exactly one
+A context label that is 12 octets or more in length and contains exactly one
 zero-valued octet at the end can be registered on a First-Come, First-Served
-basis [RFC5226].  Context strings that do not meet these requirements require
+basis [RFC5226].  Context labels that do not meet these requirements require
 Expert Review [RFC5226].
 
 
